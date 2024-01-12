@@ -66,4 +66,14 @@ public class Board {
     public Piece piece(Position position) {
         return pieces[position.getRow()][position.getColumn()];
     }
+    
+    /**
+     * Coloca a peça na posição
+     * @param piece
+     * @param position 
+     */
+    public void placePiece(Piece piece, Position position) {
+        pieces[position.getRow()][position.getColumn()] = piece;
+        piece.position = position;
+    }
 }
