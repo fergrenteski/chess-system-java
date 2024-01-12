@@ -33,6 +33,17 @@ public class ChessMatch {
     }
     
     /**
+     * Movimentos possíveis da peça
+     * @param sourcePosition
+     * @return 
+     */
+    public boolean [][] possibleMoves(ChessPosition sourcePosition) {
+        Position position = sourcePosition.toPosition();
+        validateSourcePosition(position);
+        return board.piece(position).possibleMoves();
+    }
+    
+    /**
      * Movimento da peça
      * @param sourcePosition
      * @param targetPosition
