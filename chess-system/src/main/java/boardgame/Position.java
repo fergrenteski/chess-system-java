@@ -48,6 +48,16 @@ public class Position {
     }
     
     /**
+     * Coloca os valores das linhas e colunas
+     * @param row
+     * @param column 
+     */
+    public void setValues(int row, int column) {
+        this.row = row;
+        this.column = column;
+    }
+    
+    /**
      * Retorna a posição da peça
      * @return 
      */
