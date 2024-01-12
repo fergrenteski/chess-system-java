@@ -8,6 +8,9 @@ import chess.pieces.King;
 import chess.pieces.Rook;
 
 public class ChessMatch {
+    
+    private int turn;
+    private Color currentPlayer;
     private Board board;
     
     /**
@@ -15,7 +18,25 @@ public class ChessMatch {
      */
     public ChessMatch(){
         board = new Board(8, 8);
+        turn = 1;
+        currentPlayer = Color.WHITE;
         initialSetup();
+    }
+    
+    /**
+     * Retorna o turno do jogo
+     * @return 
+     */
+    public int getTurn(){
+        return turn;
+    }
+    
+    /**
+     * Retorna o player de jogada atual
+     * @return 
+     */
+    public Color getCurrentPlayer() {
+        return currentPlayer;
     }
     
     /**
@@ -55,6 +76,7 @@ public class ChessMatch {
        validateSourcePosition(source);
        validateTargetPosition(source, target);
        Piece capturedPiece = makeMove(source, target);
+       nextTurn();
        return (ChessPiece) capturedPiece;
     }
     
@@ -65,6 +87,9 @@ public class ChessMatch {
     private void validateSourcePosition(Position position) {
         if(!board.thereIsAPiece(position)) {
             throw new ChessException("There is no piece on source position");
+        }
+        if(currentPlayer != ((ChessPiece) board.piece(position)).getColor()) {
+            throw new ChessException("The choosen piece not yours");
         }
         if(!board.piece(position).isThereAnyPossibleMove()) {
             throw new ChessException("There is not possible moves for the chosen piece");
@@ -96,6 +121,13 @@ public class ChessMatch {
         return capturedPiece;
     }
     
+    /**
+     * Verifica o próximo turno
+     */
+    private void nextTurn() {
+        turn++;
+        currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+    }
     /**
      * Coloca uma nova peça convertendo a posição Xadrez para a matriz
      * @param column
