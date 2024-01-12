@@ -75,6 +75,24 @@ public class Board {
     }
     
     /**
+     * Remove a peça na posição
+     * @param position
+     * @return 
+     */
+    public Piece removePiece(Position position) {
+        if(!positionExists(position)) {
+            throw new BoardException("Position not on the board");
+        }
+        if (piece(position) == null) {
+            return null;
+        }
+        Piece aux = piece(position);
+        aux.position = null;
+        pieces[position.getRow()][position.getColumn()] = null;
+        return aux;
+    }
+    
+    /**
      * Posição existente por linha e coluna (tabuleiro)
      * @param row
      * @param column

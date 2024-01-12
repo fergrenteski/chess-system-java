@@ -1,8 +1,11 @@
 package application;
 
 import chess.ChessPiece;
+import chess.ChessPosition;
 import static chess.Color.BLACK;
 import static chess.Color.WHITE;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
 
@@ -26,6 +29,22 @@ public class UI {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+    /**
+     * Faz a leitura de entrada de dados da coluna e linha
+     * @param sc
+     * @return 
+     */
+    public static ChessPosition readChessPosition(Scanner sc) {
+        try {
+            String s = sc.nextLine();
+            char column = s.charAt(0);
+            int row = Integer.parseInt(s.substring(1));
+            return new ChessPosition(column, row);
+        } catch (RuntimeException ex) {
+            throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
+        }
+    }
+    
     /**
      * Impressão do tabuleiro
      *

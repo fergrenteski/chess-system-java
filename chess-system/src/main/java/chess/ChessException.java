@@ -1,7 +1,9 @@
 
 package chess;
 
-public class ChessException extends RuntimeException{
+import boardgame.BoardException;
+
+public class ChessException extends BoardException{
     
     /**
      * Construtor Super
