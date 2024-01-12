@@ -24,4 +24,14 @@ public class King extends ChessPiece {
     public String toString() {
         return "K";
     }
+    
+    /**
+     * Possível movimento da peça
+     * @return 
+     */
+    @Override
+    public boolean[][] possibleMoves() {
+        boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+        return mat;
+    }
 }
