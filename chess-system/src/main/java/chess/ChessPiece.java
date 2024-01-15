@@ -27,6 +27,14 @@ public abstract class ChessPiece extends Piece{
     }
     
     /**
+     * Retorna a posição da peça
+     * @return 
+     */
+    public ChessPosition getChessPosition() {
+        return ChessPosition.fromPosition(position);
+    }
+    
+    /**
      * Verifica se tem alguma peça adversária em uma posição
      * @param position
      * @return 
