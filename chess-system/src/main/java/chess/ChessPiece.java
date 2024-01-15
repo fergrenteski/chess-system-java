@@ -7,6 +7,7 @@ import boardgame.Position;
 
 public abstract class ChessPiece extends Piece{
     private Color color;
+    private int moveCount;
 
     /**
      * Construtor com parâmetros
@@ -24,6 +25,28 @@ public abstract class ChessPiece extends Piece{
      */
     public Color getColor() {
         return color;
+    }
+    
+    /**
+     * Retorna a contagem de movimento
+     * @return 
+     */
+    public int getMoveCount(){
+        return moveCount;
+    }
+    
+    /**
+     * Adiciona contagem de movimento
+     */
+    public void increaseMoveCount(){
+        moveCount++;
+    }
+    
+    /**
+     * Retira contagem de movimento
+     */
+    public void decreaseMoveCount(){
+        moveCount--;
     }
     
     /**
