@@ -11,7 +11,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import static java.util.stream.Collectors.toList;
 
 public class UI {
 
@@ -52,7 +51,7 @@ public class UI {
      */
     public static ChessPosition readChessPosition(Scanner sc) {
         try {
-            String s = sc.nextLine();
+            String s = sc.nextLine().toLowerCase();
             char column = s.charAt(0);
             int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(column, row);
@@ -76,6 +75,18 @@ public class UI {
             System.out.println("CHECKMATE!");
             System.out.println("Winner: " + chessMatch.getCurrentPlayer());
         }
+    }
+    
+    public static void promoted(Scanner sc, ChessMatch chessMatch) {
+        System.out.print("Enter piece for promotion (B/N/R/Q): ");
+                    String type = sc.nextLine().toUpperCase();
+
+                    while (!type.equals("B") && !type.equals("N") && !type.equals("R") && !type.equals("Q")) {
+                        System.out.print("Enter piece for promotion (B/N/R/Q): ");
+                        type = sc.nextLine().toUpperCase();
+
+                    }
+                    chessMatch.replacePromotedPiece(type);
     }
     
     /**
